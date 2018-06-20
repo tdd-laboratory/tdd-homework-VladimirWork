@@ -34,6 +34,12 @@ class TestCase(unittest.TestCase):
     def test_dates(self):
         self.assert_extract('I was born on 2015-07-25.', library.dates_iso8601, '2015-07-25')
 
+    def test_no_incorrect_dates(self):
+        self.assert_extract('Today is 2018-13-32.', library.dates_iso8601)
+
+    def test_dates_fmt2(self):
+        self.assert_extract('I was born on 25 Jan 2017.', library.dates_fmt2, '25 Jan 2017')
+
 
 if __name__ == '__main__':
     unittest.main()
