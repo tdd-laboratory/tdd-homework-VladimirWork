@@ -10,6 +10,7 @@ US until 15-20 years later.) It is celebrated by 77.9% of the population--
 trending toward 80.                                                                
 '''
 
+
 class TestCase(unittest.TestCase):
 
     # Helper function
@@ -29,6 +30,9 @@ class TestCase(unittest.TestCase):
     # Third unit test; prove that if we look for integers where there are none, we get no results.
     def test_no_integers(self):
         self.assert_extract("no integers", library.integers)
+
+    def test_dates(self):
+        self.assert_extract('I was born on 2015-07-25.', library.dates_iso8601, '2015-07-25')
 
 
 if __name__ == '__main__':
