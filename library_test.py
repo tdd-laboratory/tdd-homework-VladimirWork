@@ -40,6 +40,56 @@ class TestCase(unittest.TestCase):
     def test_dates_fmt2(self):
         self.assert_extract('I was born on 25 Jan 2017.', library.dates_fmt2, '25 Jan 2017')
 
+    def test_dates_and_timestamps_min_space_del(self):
+        self.assert_extract('I was born on 2018-06-22 18:22.',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22 18:22')
+
+    def test_dates_and_timestamps_sec_space_del(self):
+        self.assert_extract('I was born on 2018-06-22 18:22:19',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22 18:22:19.')
+
+    def test_dates_and_timestamps_ms_space_del(self):
+        self.assert_extract('I was born on 2018-06-22 18:22:19.123.',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22 18:22:19.123')
+
+    def test_dates_and_timestamps_min_T_del(self):
+        self.assert_extract('I was born on 2018-06-22T18:22.',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22T18:22')
+
+    def test_dates_and_timestamps_sec_T_del(self):
+        self.assert_extract('I was born on 2018-06-22T18:22:19',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22T18:22:19.')
+
+    def test_dates_and_timestamps_ms_T_del(self):
+        self.assert_extract('I was born on 2018-06-22T18:22:19.123.',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22T18:22:19.123')
+
+    def test_dates_and_timestamps_sec_space_del_UTC(self):
+        self.assert_extract('I was born on 2018-06-22 18:22:19UTC',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22 18:22:19UTC.')
+
+    def test_dates_and_timestamps_ms_space_del_MDT(self):
+        self.assert_extract('I was born on 2018-06-22 18:22:19.123MDT.',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22 18:22:19.123MDT')
+
+    def test_dates_and_timestamps_min_T_del_UTC(self):
+        self.assert_extract('I was born on 2018-06-22T18:22UTC.',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22T18:22UTC')
+
+    def test_dates_and_timestamps_sec_T_del_MDT(self):
+        self.assert_extract('I was born on 2018-06-22T18:22:19',
+                            library.dates_iso8601_timestamps_delimiters_timezones,
+                            '2018-06-22T18:22:19MDT.')
+
 
 if __name__ == '__main__':
     unittest.main()
